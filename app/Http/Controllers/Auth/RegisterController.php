@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Auth;
 use App\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
+
+// registerUserにはRegisterControllerがある
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
@@ -27,11 +29,13 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    // ユーザー登録後のリダイレクト先がトップページ
+    protected $redirectTo = '/'; 
 
     /**
      * Create a new controller instance.
-     *
+     * Controllerの__construct()でミドルウェアを設定することができる。
+     * Laravel におけるミドルウェアは Controller にアクセスする前に事前に確認される条件
      * @return void
      */
     public function __construct()
