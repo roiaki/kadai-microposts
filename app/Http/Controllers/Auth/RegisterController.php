@@ -26,10 +26,10 @@ class RegisterController extends Controller
 
     /**
      * Where to redirect users after registration.
-     *
+     * ユーザー登録後のリダイレクト先がトップページ
      * @var string
      */
-    // ユーザー登録後のリダイレクト先がトップページ
+   
     protected $redirectTo = '/'; 
 
     /**
