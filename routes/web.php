@@ -30,4 +30,13 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 // ユーザ機能
 Route::group(['middleware' => ['auth']], function () {
     Route::resource('users', 'UsersController', ['only' => ['index', 'show']]);
+        
+    Route::group(['prefix' => 'users/{id}'], function () {
+        Route::post('follow', 'UserFollowController@store')->name('user.follow');         // POST   /users/{id}/follow
+        Route::delete('unfollow', 'UserFollowController@destroy')->name('user.unfollow'); // DELETE /users/{id}/unfollow
+        Route::get('followings', 'UsersController@followings')->name('users.followings'); // GET    /users/{id}/followings
+        Route::get('followers', 'UsersController@followers')->name('users.followers');    // GET    /users/{id}/followers
+    });
+    
+    Route::resource('microposts', 'MicropostsController', ['only' => ['store', 'destroy']]);
 });
