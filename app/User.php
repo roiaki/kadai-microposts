@@ -93,4 +93,20 @@ class User extends Authenticatable
     {
         return $this->followings()->where('follow_id', $userId)->exists();
     }
+    
+    /**
+     * タイムライン用のマイクロポストを取得するメソッド 
+     * @param
+     * @return microposts テーブルの user_id カラムで $follow_user_ids の中にある ユーザid を含むもの全てを取得して return
+     */
+    public function feed_microposts()
+    {
+        // UserがフォローしているUserのidの配列を取得 pluck()は与えられた引数のテーブルのカラム名だけを抜き出す
+        // toArray()で通常の配列に変換
+        $follow_user_ids = $this->followings()->pluck('users.id')->toArray();
+        $follow_user_ids[] = $this->id;
+        
+        // microposts テーブルの user_id カラムで $follow_user_ids の中にある ユーザid を含むもの全てを取得して return
+        return Micropost::whereIn('user_id', $follow_user_ids);
+    }
 }
