@@ -32,12 +32,14 @@ class UsersController extends Controller
             'microposts' => $microposts,
         ];
 
+        // ??
         $data += $this->counts($user);
 
         return view('users.show', $data);
     }
     
-        public function followings($id)
+    
+    public function followings($id)
     {
         $user = User::find($id);
         $followings = $user->followings()->paginate(10);
@@ -65,5 +67,24 @@ class UsersController extends Controller
         $data += $this->counts($user);
 
         return view('users.followers', $data);
+    }
+    
+    /**
+     * お気に入り投稿を取得するメソッド
+     * 
+     */ 
+    public function favorites($id)
+    {
+        $user = User::find($id);
+        $favorites_posts = $user->favorites()->paginate(10);
+
+        $data = [
+            'user' => $user,
+            'microposts' => $favorites_posts,
+        ];
+
+        $data += $this->counts($user);
+
+        return view('users.favorites', $data);
     }
 }

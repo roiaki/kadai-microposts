@@ -1,3 +1,5 @@
+{{-- ユーザー詳細ページ --}}
+
 @extends('layouts.app')
 
 @section('content')

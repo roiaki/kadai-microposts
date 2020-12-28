@@ -19,14 +19,19 @@ class Controller extends BaseController
         
         // フォロー/フォロワー数のカウント
         $count_followings = $user->followings()->count();
-        $count_followers = $user->followers()->count();
+        $count_followers  = $user->followers()->count();
 
+        // お気に入りした/お気に入りされた数のカウント
+        $count_favorites = $user->favorites()->count();
+//        $count_favorited = $user->favorited()->count();
 
         return [
             'count_microposts' => $count_microposts,
             
             'count_followings' => $count_followings,
             'count_followers' => $count_followers,
+            
+            'count_favorites' => $count_favorites
         ];
     }
 }

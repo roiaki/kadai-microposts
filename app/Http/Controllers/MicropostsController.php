@@ -9,6 +9,7 @@ class MicropostsController extends Controller
     public function index()
     {
         $data = [];
+        // ログインしているならば
         if (\Auth::check()) {
             $user = \Auth::user();
 //            $microposts = $user->microposts()->orderBy('created_at', 'desc')->paginate(10);    // Lesson15 chapter11.2
@@ -41,10 +42,11 @@ class MicropostsController extends Controller
     {
         $micropost = \App\Micropost::find($id);
 
+        // 他者の Micropost を勝手に削除されないよう、ログインユーザのIDと 
+        // Micropost の所有者のID（user_id）が一致しているかを調べる
         if (\Auth::id() === $micropost->user_id) {
             $micropost->delete();
         }
-
         return back();
     }
 }
