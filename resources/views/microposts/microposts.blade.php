@@ -21,6 +21,7 @@
                     @endif
                 </div>
             </div>
+            <!-- 課題お気に入り追加-->
             @include('user_favorite.favorite_button', ['micropost' => $micropost])
         </li>
     @endforeach
