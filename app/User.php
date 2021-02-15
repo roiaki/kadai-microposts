@@ -133,7 +133,7 @@ class User extends Authenticatable
         // 第二引数：中間テーブル　
         // 第三引数：中間テーブルに保存されている自分のidを示すカラム名　
         // 第四引数：中間テーブルに保存されている関係先のidを示すカラム名
-        return $this->belongsToMany(Micropost::class, 'favorites', 'user_id', 'micropost_id')->withTimestamps();
+        return $this->belongsToMany(Micropost::class, 'favorites', 'user_id', 'favorite_id')->withTimestamps();
     }
     
     /**
@@ -187,6 +187,6 @@ class User extends Authenticatable
         // where(カラム名, 検索対象条件)　where('micropost_id', $micropostId) : where micropost_id = $micropostId
 //        $miId = \App\Micropost::where('micropost_id', $micropostId);
         
-        return $this->favorites()->where('micropost_id', $micropostId)->exists();
+        return $this->favorites()->where('favorite_id', $micropostId)->exists();
     }
 }

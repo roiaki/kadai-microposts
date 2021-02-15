@@ -21,8 +21,10 @@
                     @endif
                 </div>
             </div>
-            <!-- 課題お気に入り追加-->
+            
+            <!-- 課題お気に入り追加　投稿に関してはログインユーザーと表示ユーザーの区別なくお気に入りボタンを表示-->
             @include('user_favorite.favorite_button', ['micropost' => $micropost])
+            
         </li>
     @endforeach
 </ul>
